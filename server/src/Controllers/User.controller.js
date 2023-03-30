@@ -28,6 +28,32 @@ router.post("/register",async(req,res) => {
 
 
 
+router.post("/login",async(req,res) => {
+     const {email,password} = req.body;
+    try{
+      const user = await User.find({email});
+      const hashed_password=user[0].password
+      if(user.length>0){     
+      bcrypt.compare(password,hashed_password, async(err, result)=>{
+          // result == true
+          if(result){
+            const token = jwt.sign({course:"backend"},"masai")          
+            res.status(201).send({"msg":"login successfull!","token":token});
+          }else{
+            res.status(501).send("Wrong credentials")
+
+          }
+      });
+    }else{
+      res.status(501).send("Wrong credentials")
+    }
+      
+    }catch(err){
+      res.status(501).send({err: err.message});
+    }
+})
+
+
 
 
 
