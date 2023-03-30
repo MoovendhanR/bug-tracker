@@ -20,6 +20,26 @@ import {
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit=()=>{
+        const payload ={
+            email,
+            password,
+        }
+        fetch("http://localhost:5000/users/register",{
+            method:"POST",
+            body:JSON.stringify(payload),
+            headers:{
+               "Content-type": "application/json"
+            }
+         })
+         .then(res=>res.json())
+         .then(res=>console.log(res))
+         .catch(err=>console.log(err))
+
+    }
 
   return (
     <Flex
@@ -56,12 +76,12 @@ const Register = () => {
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" onChange={(e)=>setEmail(e.target.value)} value={email}/>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input type={showPassword ? 'text' : 'password'} onChange={(e) =>setPassword(e.target.value)} value={password} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -81,7 +101,9 @@ const Register = () => {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                onClick={handleSubmit}
+                >
                 Sign up
               </Button>
             </Stack>
