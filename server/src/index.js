@@ -1,15 +1,14 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const connect = require('./config/db');
+const userController = require("./Controllers/User.controller.js")
 require('dotenv').config()
 
 const app = express();
 
-app.use("/",(req,res)=>{
-    res.send("running correctly")
-})
+app.use(express.json())
 
-
+app.use("/",userController);
 
 const port = process.env.port || 5000;
 
