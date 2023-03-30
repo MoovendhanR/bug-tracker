@@ -1,15 +1,22 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const connect = require('./config/db');
-const userController = require("./Controllers/User.controller.js")
-const noteController = require("./Controllers/Notes.controller.js")
+const cors=require("cors");
 require('dotenv').config()
 
+const userController = require("./Controllers/User.controller.js")
+const noteController = require("./Controllers/Notes.controller.js");
+const authenticate = require('./Middleware/Authenticate.middleware.js');
 const app = express();
+
+app.use(cors({
+    origin:"*"
+}))
 
 app.use(express.json())
 
-app.use("/",userController);
+app.use("/users",userController);
+app.use(authenticate)
 app.use("/notes",noteController);
 
 
