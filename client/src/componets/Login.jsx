@@ -35,6 +35,7 @@ const Login = () => {
         //  .then(res=>console.log(res))
          .then((res)=>{
           console.log(res.token)
+          localStorage.setItem("token",res.token);
           if(res.token){
             alert("Login succesfull")
             navigate("/dashboard")
