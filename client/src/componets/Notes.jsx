@@ -247,12 +247,12 @@ useEffect(()=>{
     <Button onClick={handleSubmit1} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle1(true)}>report bug</Button>)}
       </Flex>
       <Box>
-      <Flex bg={"yellow"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+      <Flex bg={"yellow"} color="grey" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >Major severity</Text>
           <Spacer />
           </Flex>
         {data1.map((value)=><Box key={value.id}>
-          <Flex bg={"yellow"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Flex bg={"yellow"}  mt="1.3rem" color="grey" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes1}</Text>
           <Spacer />
             <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes1(value._id)}><DeleteIcon/></Button>
