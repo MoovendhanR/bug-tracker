@@ -19,10 +19,10 @@ app.use(cors({
 
 app.use(express.json())
 
+app.use("/notes1",noteController1);
 app.use("/users",userController);
 app.use(authenticate)
 app.use("/notes",noteController);
-app.use("/notes1",noteController1);
 app.use("/notes2",noteController2);
 app.use("/notes3",noteController3);
 

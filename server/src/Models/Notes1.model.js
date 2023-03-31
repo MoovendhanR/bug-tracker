@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const noteSchema = new mongoose.Schema({
-    notes:{
+const noteSchema1 = new mongoose.Schema({
+    notes1:{
         type:String,
         required:true,
     }
@@ -10,11 +10,9 @@ const noteSchema = new mongoose.Schema({
     timestamps:true,
 });
 
-const Notes=mongoose.model("notes",noteSchema);
-
+const Notes1=mongoose.model("notes1",noteSchema1);
 
 
 module.exports={
-    Notes,
-   
+    Notes1,
 };
