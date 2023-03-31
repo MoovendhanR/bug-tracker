@@ -9,6 +9,19 @@ const [data,AllData]=useState([])
 console.log(data)
 
 
+function fetchData() {
+    fetch("http://localhost:5000/notes",{
+    headers:{
+      "Authorization":localStorage.getItem("token")
+     }
+  })
+    .then((res)=>res.json())
+    .then((res)=>AllData(res.notes))
+
+}
+useEffect(()=>{
+    fetchData()
+},[])
 
   const handleSubmit=(e)=>{
     e.preventDefault()
