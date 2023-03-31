@@ -10,7 +10,6 @@ import {
     Link,
     Button,
     Heading,
-    Text,
     useColorModeValue,
   } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
@@ -33,10 +32,18 @@ const Login = () => {
             }
          })
          .then(res=>res.json())
-         .then(res=>console.log(res))
-         .then(()=>alert("Login succesfull"))
-         .then(()=>navigate("/dashboard"))
-         .catch(err=>console.log(err))
+        //  .then(res=>console.log(res))
+         .then((res)=>{
+          console.log(res.token)
+          if(res.token){
+            alert("Login succesfull")
+            navigate("/dashboard")
+          }else{
+            alert("Login failed")
+          }
+         })
+        //  .then(()=>navigate("/dashboard"))
+         .catch(err=>console.log(err.message))
     }
 
   return (
