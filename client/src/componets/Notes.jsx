@@ -224,18 +224,18 @@ useEffect(()=>{
         {/* 11 */}
         {/* {toggle && (<Button>report bug</Button>)} */}
         {toggle ? (<Flex> <Input type="text" value={notes} onChange={(e)=>setNotes(e.target.value)} />
-    <Button onClick={handleSubmit} ml="5px">add</Button></Flex>):(<Button onClick={()=>setToggle(true)}>report bug</Button>)}
+    <Button onClick={handleSubmit} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle(true)}>report bug</Button>)}
       </Flex>
       <Box>
-      <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >danger level</Text>
+      <Flex bg={"red"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center"  >Critical Severity</Text>
           <Spacer />
           </Flex>
         {data.map((value)=><Box key={value.id}>
-          <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Flex bg={"red"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes}</Text>
           <Spacer />
-            <Button  p='4'mt={"20px"} onClick={()=>deleteNotes(value._id)}><DeleteIcon/></Button>
+            <Button color={"black"}  p='4'mt={"20px"} onClick={()=>deleteNotes(value._id)}><DeleteIcon/></Button>
           </Flex>
         </Box>)}</Box>
     </Box>
@@ -244,18 +244,18 @@ useEffect(()=>{
       {/* 22 */}
         {/* {toggle && (<Button>report bug</Button>)} */}
         {toggle1 ? (<Flex> <Input type="text" value={notes1} onChange={(e)=>setNotes1(e.target.value)} />
-    <Button onClick={handleSubmit1} ml="5px">add</Button></Flex>):(<Button onClick={()=>setToggle1(true)}>report bug</Button>)}
+    <Button onClick={handleSubmit1} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle1(true)}>report bug</Button>)}
       </Flex>
       <Box>
-      <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >danger level</Text>
+      <Flex bg={"yellow"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >Major severity</Text>
           <Spacer />
           </Flex>
         {data1.map((value)=><Box key={value.id}>
-          <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Flex bg={"yellow"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes1}</Text>
           <Spacer />
-            <Button  p='4'mt={"20px"} onClick={()=>deleteNotes1(value._id)}><DeleteIcon/></Button>
+            <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes1(value._id)}><DeleteIcon/></Button>
           </Flex>
         </Box>)}</Box>
     </Box>
@@ -264,18 +264,18 @@ useEffect(()=>{
       {/* 33 */}
         {/* {toggle && (<Button>report bug</Button>)} */}
         {toggle2 ? (<Flex> <Input type="text" value={notes2} onChange={(e)=>setNotes2(e.target.value)} />
-    <Button onClick={handleSubmit2} ml="5px">add</Button></Flex>):( <Flex flexDirection="row-reverse"><Button  onClick={()=>setToggle2(true)}>report bug</Button></Flex>)}
+    <Button onClick={handleSubmit2} ml="5px">add</Button></Flex>):( <Flex flexDirection="row-reverse"><Button colorScheme='teal'  onClick={()=>setToggle2(true)}>report bug</Button></Flex>)}
       </Flex>
       <Box>
-      <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >danger level</Text>
+      <Flex bg={"blue"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center"  >Medium Severity</Text>
           <Spacer />
           </Flex>
         {data2.map((value)=><Box key={value.id}>
-          <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Flex bg={"blue"} color="white" mt="1.3rem" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes2}</Text>
           <Spacer />
-            <Button  p='4'mt={"20px"} onClick={()=>deleteNotes2(value._id)}><DeleteIcon/></Button>
+            <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes2(value._id)}><DeleteIcon/></Button>
           </Flex>
         </Box>)}</Box>
     </Box>
@@ -284,18 +284,18 @@ useEffect(()=>{
       {/* 44 */}
         {/* {toggle && (<Button>report bug</Button>)} */}
         {toggle3 ? (<Flex> <Input type="text" value={notes3} onChange={(e)=>setNotes3(e.target.value)} />
-    <Button onClick={handleSubmit3} ml="5px">add</Button></Flex>):(<Button onClick={()=>setToggle3(true)}>report bug</Button>)}
+    <Button onClick={handleSubmit3} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle3(true)}>report bug</Button>)}
       </Flex>
       <Box>
-      <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >danger level</Text>
+      <Flex bg={"green"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >Low Severity</Text>
           <Spacer />
           </Flex>
         {data3.map((value)=><Box key={value.id}>
-          <Flex boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes3}</Text>
+          <Flex bg={"green"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+          <Text  fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes3}</Text>
           <Spacer />
-            <Button  p='4'mt={"20px"} onClick={()=>deleteNotes3(value._id)}><DeleteIcon/></Button>
+            <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes3(value._id)}><DeleteIcon/></Button>
           </Flex>
         </Box>)}</Box>
     </Box>
