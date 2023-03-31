@@ -1,12 +1,12 @@
 const express = require('express');
-const { Notes } = require('../Models/Notes.model.js');
+const { Notes1 } = require('../Models/Notes.model.js');
 
 const router = express.Router();
 
 //notes 1
 router.post('/',async(req,res)=>{
     try{
-     const note=await Notes.create(req.body);
+     const note=await Notes1.create(req.body);
      res.status(201).send({note:note});
 
     }catch(err){
@@ -15,7 +15,7 @@ router.post('/',async(req,res)=>{
 })
 router.get('/',async(req,res)=>{
     try{
-     const notes=await Notes.find().lean().exec();
+     const notes=await Notes1.find().lean().exec();
      res.status(201).send({notes:notes});
 
     }catch(err){
@@ -26,7 +26,7 @@ router.get('/',async(req,res)=>{
 
 router.patch('/:id',async(req,res)=>{
     try{
-     const note=await Notes.findByIdAndUpdate(req.params.id,req.body,{new:true}).lean().exec();
+     const note=await Notes1.findByIdAndUpdate(req.params.id,req.body,{new:true}).lean().exec();
      res.status(201).send({note:note});
 
     }catch(err){
@@ -36,7 +36,7 @@ router.patch('/:id',async(req,res)=>{
 
 router.delete('/:id',async(req,res)=>{
     try{
-     const notes=await Notes.findByIdAndDelete(req.params.id).lean().exec();
+     const notes=await Notes1.findByIdAndDelete(req.params.id).lean().exec();
      res.status(201).send("item deleted");
 
     }catch(err){
