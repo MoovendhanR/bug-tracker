@@ -1,7 +1,15 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Box, Button, Center, Flex, Grid, Input, Spacer, Text, } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd"
+import BugCard from './BugCard';
 
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+return result;
+};
 const Notes = () => {
 const [notes,setNotes]=useState("")
 const [data,AllData]=useState([])
@@ -208,17 +216,29 @@ useEffect(()=>{
     fetchData3()
 },[])
 
+const onDragEnd = (result) => {
+  console.log(result)
+  if (!result.destination) return;
+  if (result.destination.index === result.source.index) return;
+const datas = reorder(
+    data,
+    result.source.index,
+    result.destination.index
+  );
+    AllData(datas)
+}
 
 
 
 
   return (
     <>
+    <DragDropContext onDragEnd={onDragEnd}>
+
     <Center>
 
     <Grid templateColumns='repeat(4, 1fr)' gap={10}>
     <Box w='200px' h='10' >
-    
       <Flex>
 
         {/* 11 */}
@@ -226,19 +246,40 @@ useEffect(()=>{
         {toggle ? (<Flex> <Input type="text" value={notes} onChange={(e)=>setNotes(e.target.value)} />
     <Button onClick={handleSubmit} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle(true)}>report bug</Button>)}
       </Flex>
-      <Box>
-      <Flex bg={"red"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center"  >Critical Severity</Text>
-          <Spacer />
-          </Flex>
-        {data.map((value)=><Box key={value.id}>
-          <Flex bg={"red"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes}</Text>
-          <Spacer />
-            <Button color={"black"}  p='4'mt={"20px"} onClick={()=>deleteNotes(value._id)}><DeleteIcon/></Button>
-          </Flex>
-        </Box>)}</Box>
-    </Box>
+            <Flex bg={"red"} color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+                <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center"  >Critical Severity</Text>
+                <Spacer />
+                </Flex>
+
+    <Droppable droppableId="list">
+         {(provided) => (
+            <div  
+            {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {data && data.map((item,index)=>
+               <Draggable draggableId={item._id} key={item._id} index={index}>
+                {
+                  (provided)=>(
+                    <Box 
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    >
+                <Flex bg={"red"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+                <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{item.notes}</Text>
+                <Spacer />
+                  <Button color={"black"}  p='4'mt={"20px"} onClick={()=>deleteNotes(item._id)}><DeleteIcon/></Button>
+                </Flex>
+              </Box>
+                  )
+                }
+               </Draggable>)}
+              {provided.placeholder}
+              </div>
+          )}
+        </Droppable>
+               </Box>
     <Box w='200px' h='10' >
     <Flex>
       {/* 22 */}
@@ -246,6 +287,7 @@ useEffect(()=>{
         {toggle1 ? (<Flex> <Input type="text" value={notes1} onChange={(e)=>setNotes1(e.target.value)} />
     <Button onClick={handleSubmit1} ml="5px">add</Button></Flex>):(<Button colorScheme='teal' onClick={()=>setToggle1(true)}>report bug</Button>)}
       </Flex>
+
       <Box>
       <Flex bg={"yellow"} color="grey" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >Major severity</Text>
@@ -291,16 +333,20 @@ useEffect(()=>{
           <Text fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >Low Severity</Text>
           <Spacer />
           </Flex>
-        {data3.map((value)=><Box key={value.id}>
-          <Flex bg={"green"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
-          <Text  fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes3}</Text>
-          <Spacer />
-            <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes3(value._id)}><DeleteIcon/></Button>
-          </Flex>
-        </Box>)}</Box>
+        {data3.map((value)=>
+        // <Box key={value.id}>
+        //   <Flex bg={"green"}  mt="1.3rem" color="white" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
+        //   <Text  fontSize='xl' h={"40px"} mt={"10px"} mb={"20px"}  p='4' textAlign="center" >{value.notes3}</Text>
+        //   <Spacer />
+        //     <Button color={"black"} p='4'mt={"20px"} onClick={()=>deleteNotes3(value._id)}><DeleteIcon/></Button>
+        //   </Flex>
+        // </Box>
+        <BugCard key={value.Id} notes3={value.notes3} deleteNotes3={()=>deleteNotes3(value._id)}/>
+        )}</Box>
     </Box>
   </Grid>
     </Center>
+     </DragDropContext>
     </>
   )
 }
